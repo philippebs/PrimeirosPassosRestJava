@@ -1,0 +1,10 @@
+#ignorar
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+.settings/
+.project

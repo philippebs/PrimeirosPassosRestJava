@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +44,16 @@ public class ClienteService {
 				httpStatus = HttpStatus.NOT_FOUND;
 			}
 			return new ResponseEntity<> (clientes, httpStatus);
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	public ResponseEntity<?> salvar(@RequestBody Cliente cliente)throws Exception{
+		try {
+			clienteDados.inserirCliente(cliente);
+			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (Exception e) {
 			throw new Exception(e);
 		}

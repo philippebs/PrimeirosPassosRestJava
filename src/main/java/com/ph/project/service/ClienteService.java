@@ -23,6 +23,7 @@ public class ClienteService {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<?> buscar(@PathVariable("id") Long id){
+		System.out.print("Buscando cliente");
 		HttpStatus  httpStatus;
 		Cliente cliente = clienteDados.buscarCliente(id);
 		if(cliente != null){
@@ -30,12 +31,14 @@ public class ClienteService {
 		}else{
 			httpStatus = HttpStatus.NOT_FOUND;
 		}
+		System.out.println(" " + cliente);
 		return new ResponseEntity<>(cliente, httpStatus);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<?> buscarTodos() throws Exception{
 		try {
+			System.out.print("Buscando cliente");
 			HttpStatus  httpStatus;
 			List<Cliente> clientes = clienteDados.buscarTodos();
 			if(clientes != null && clientes.size() > 0){
@@ -43,6 +46,7 @@ public class ClienteService {
 			}else{
 				httpStatus = HttpStatus.NOT_FOUND;
 			}
+			System.out.println(" QTD: " + clientes.size());
 			return new ResponseEntity<> (clientes, httpStatus);
 		} catch (Exception e) {
 			throw new Exception(e);
@@ -53,7 +57,7 @@ public class ClienteService {
 	public ResponseEntity<?> salvar(@RequestBody Cliente cliente)throws Exception{
 		try {
 			clienteDados.inserirCliente(cliente);
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {
 			throw new Exception(e);
 		}

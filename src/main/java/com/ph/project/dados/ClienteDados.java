@@ -13,7 +13,7 @@ import com.ph.project.entity.Cliente;
 @Repository
 public class ClienteDados {
 	
-	public static final Map<Long, Cliente> MAP_CLIENTES = new HashMap<>();
+	public static Map<Long, Cliente> MAP_CLIENTES = new HashMap<>();
 	public static Long idAtual = new Long(0L);
 	
 	static{

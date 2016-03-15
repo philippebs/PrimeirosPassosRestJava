@@ -1,5 +1,8 @@
 package com.ph.project.entity;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
+@JsonAutoDetect
 public class Cliente {
 	
 	private Long id;
@@ -18,7 +21,8 @@ public class Cliente {
 		this.sobrenome = sobrenome;
 		this.idade = idade;
 	}
-
+	
+	
 	public Long getId() {
 		return id;
 	}
